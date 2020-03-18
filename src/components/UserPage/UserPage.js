@@ -10,8 +10,13 @@ const UserPage = (props) => (
     <h1 id="welcome">
       Welcome, { props.user.username }!
     </h1>
-    <p>Your ID is: {props.user.id}</p>
-    <LogOutButton className="log-in" />
+    <div className="fb-page" data-href="https://www.facebook.com/campicaghowan" data-tabs="timeline" data-width=""
+      data-height="" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false"
+      data-show-facepile="true">
+    </div>
+    <blockquote cite="https://www.facebook.com/campicaghowan" className="fb-xfbml-parse-ignore"><a
+      href="https://www.facebook.com/campicaghowan">YMCA Camp Icaghowan</a></blockquote>
+    {/* <LogOutButton className="log-in" /> */}
   </div>
 );
 
