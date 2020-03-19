@@ -8,7 +8,7 @@ const router = express.Router();
 
 
 
-router.post('/', (req, res, next) => {
+router.post('/', (req, res) => {
     console.log('logging from post inalumni router', req.body.firstName);
     const firstName = req.body.firstName;
     const lastName = req.body.lastName;
@@ -25,12 +25,14 @@ router.post('/', (req, res, next) => {
     const willingToBeContacted = req.body.willingToBeContacted;
     console.log('logging after setting analogs:', lastName);
     
-    const queryText = 'INSERT INTO "user_info" ("firstName","lastName","email","phoneNumber","age","gender","yearsAtCamp","favoriteActivity","favoriteMemory","annualFund","volunteerWork","newsList","willingToBeContacted") VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13)';
+    const queryText = `INSERT INTO "user_info" ("firstName","lastName","email","phoneNumber","age","gender","yearsAtCamp","favoriteActivity","favoriteMemory","annualFund","volunteerWork","newsList","willingToBeContacted") VALUES (firstName, lastName, email, phoneNumber, age, gender, yearsAtCamp, favoriteActivity, favoriteMemory, annualFund, volunteerWork, newsList, willingToBeContacted)`;
 
     pool.query(queryText, [firstName, lastName, email, phoneNumber, age, gender, yearsAtCamp, favoriteActivity, favoriteMemory, annualFund, volunteerWork, newsList, willingToBeContacted ])
         .then(() => res.sendStatus(201))
         .catch(() => res.sendStatus(500));
 });
+
+
 
 
 module.exports = router;
