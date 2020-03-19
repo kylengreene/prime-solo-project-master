@@ -20,19 +20,11 @@ class AlumniRegistration extends Component {
 
     alumniRegistration = (event) => {
         event.preventDefault();
-
-        // if (this.state.username && this.state.password) {
-        //     this.props.dispatch({
-        //         type: 'REGISTER',
-        //         payload: {
-        //             username: this.state.username,
-        //             password: this.state.password,
-        //         },
-        //     });
-        // } else {
-        //     this.props.dispatch({ type: 'REGISTRATION_INPUT_ERROR' });
-        // }
-    } // end registerUser
+    this.props.dispatch ({
+    type:'NEW_ALUMNI_INFO',
+    payload: this.state
+})
+    } // end alumniRegistration
 
     handleInputChangeFor = propertyName => (event) => {
         this.setState({
@@ -200,11 +192,9 @@ class AlumniRegistration extends Component {
                     </div>
                     
                 </form>
-                <center>
-                    <button
-                        type="button"
+                <center> <button type="button"
                         className="link-button"
-                        onClick={() => { this.props.dispatch({ type: 'SET_TO_LOGIN_MODE' }) }}
+                        onClick={() => this.alumniRegistration}
                     >
                         Login
           </button>

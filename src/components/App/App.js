@@ -18,7 +18,6 @@ import UserPage from '../UserPage/UserPage';
 import InfoPage from '../InfoPage/InfoPage';
 import AlumniRegistrationPage from '../AlumniRegistration/AlumniRegistration'
 import './App.css';
-import AlumniRegistration from '../AlumniRegistration/AlumniRegistration';
 
 class App extends Component {
   componentDidMount () {
