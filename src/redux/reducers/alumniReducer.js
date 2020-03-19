@@ -1,7 +1,7 @@
 const alumniRegistrationReducer = (state = {}, action) => {
     switch (action.type) {
         case 'SET_NEW_ALUMNI_INFO':
-            return action.payload;
+            return action.data;
         default:
             return state;
     }

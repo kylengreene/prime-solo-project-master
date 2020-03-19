@@ -5,39 +5,40 @@ class AlumniRegistration extends Component {
     state = {
         firstName: '',
         lastName: '',
-        email:'',
+        email: '',
         phoneNumber: '',
         age: '',
         gender: '',
-        yearsAtCamp:'',
-        favoriteActivity:'',
-        favoriteMemory:'',
-        annualFund:'',
-        volunteerWork:'',
+        yearsAtCamp: '',
+        favoriteActivity: '',
+        favoriteMemory: '',
+        annualFund: '',
+        volunteerWork: '',
         newsList: '',
         willingToBeContacted: '',
     };
 
     alumniRegistration = (event) => {
         event.preventDefault();
-    this.props.dispatch ({
-    type:'NEW_ALUMNI_INFO',
-    payload: this.state
-})
+        console.log('firing alumniRegistration with object:', this.state);
+
+        this.props.dispatch({
+            type: 'NEW_ALUMNI_INFO',
+            payload: this.state
+        })
     } // end alumniRegistration
 
     handleInputChangeFor = propertyName => (event) => {
         this.setState({
             [propertyName]: event.target.value,
         });
-        console.log('logging registration state', this.state);
-        
+
     }
 
     render() {
         return (
             <div>
-    
+
                 <form onSubmit={this.alumniRegistration}>
                     <h1>Alumni Information</h1>
                     <div>
@@ -79,7 +80,7 @@ class AlumniRegistration extends Component {
               <input
                                 type="phoneNumber"
                                 name="phoneNumber"
-                                value={this.state.lastName}
+                                value={this.state.phoneNumber}
                                 onChange={this.handleInputChangeFor('phoneNumber')}
                             />
                         </label>
@@ -90,7 +91,7 @@ class AlumniRegistration extends Component {
               <input
                                 type="age"
                                 name="age"
-                                value={this.state.lastName}
+                                value={this.state.age}
                                 onChange={this.handleInputChangeFor('age')}
                             />
                         </label>
@@ -160,10 +161,10 @@ class AlumniRegistration extends Component {
                                 onChange={this.handleInputChangeFor('volunteerWork')}
                             />
                         </label>
-                    </div> 
+                    </div>
                     <div>
                         <label htmlFor="willingToBeContacted">
-                           Is it okay for camp to contact you?:
+                            Is it okay for camp to contact you?:
               <input
                                 type="willingToBeContacted"
                                 name="willingToBeContacted"
@@ -190,13 +191,13 @@ class AlumniRegistration extends Component {
                             value="Register"
                         />
                     </div>
-                    
+
                 </form>
                 <center> <button type="button"
-                        className="link-button"
-                        onClick={() => this.alumniRegistration}
-                    >
-                        Login
+                    className="link-button"
+                    onClick={() => this.alumniRegistration}
+                >
+                    Login
           </button>
                 </center>
             </div>

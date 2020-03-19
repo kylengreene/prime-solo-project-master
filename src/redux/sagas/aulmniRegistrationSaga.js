@@ -1,19 +1,34 @@
-import { put, takeLatest } from 'redux-saga/effects';
+import { put, takeEvery } from 'redux-saga/effects';
 import axios from 'axios';
+import alumniRegistrationReducer from '../reducers/alumniReducer'
 
 
 function* alumniNewInfo(action) {
-    try {
+
+    yield console.log('logging from alumniNewInfo', action.payload);
+    const objectToPost = action.payload
+    console.log( objectToPost);
+    
+        yield put({ type: 'SET_NEW_ALUMNI_INFO', data: action.payload })
+    // try {
         
-        yield put({ type: 'SET_NEW_ALUMNI_INFO', data: action.payload });
-    } catch (error) {
-        console.log('Error with alumni registration:', error);
-        yield put({ type: 'REGISTRATION_FAILED' });
-    }
+    //     yield axios({
+    //         method: 'POST',
+    //         url: '/api/alumniInfo',
+    //         data: objectToPost 
+    //     })
+    //     // yield put({
+    //     //     type: 'GET_FRUIT'
+    //     // })
+    // } catch (error) {
+    //     console.log(error);
+    // }
+
 }
 
-function* aulmniRegistrationSaga() {
-    yield takeLatest('NEW_ALUMNI_INFO', alumniNewInfo);
+
+function* alumniRegistrationSaga() {
+    yield takeEvery('NEW_ALUMNI_INFO', alumniNewInfo);
 }
 
-export default aulmniRegistrationSaga;
+export default alumniRegistrationSaga;
