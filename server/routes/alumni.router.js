@@ -33,6 +33,15 @@ router.post('/', (req, res) => {
         .catch((error) => res.sendStatus(error));
 });
 
+router.get ('/', (req,res) =>{
+    const queryText = `SELECT * FROM "user_info" `
+    pool.query(queryText)
+        .then(results => {
+            console.log(results.rows);
+            
+            res.send(results.rows)})
+        .catch((error) => res.send(error));
+})
 
 
 
