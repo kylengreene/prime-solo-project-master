@@ -1,45 +1,62 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import Async from 'react-promise';
 
 class ProfilePage extends Component {
-    state = {
-        firstName: '',
-        lastName: '',
-        email: '',
-        phoneNumber: '',
-        age: '',
-        gender: '',
-        yearsAtCamp: '',
-        favoriteActivity: '',
-        favoriteMemory: '',
-        annualFund: '',
-        volunteerWork: '',
-        newsList: '',
-        willingToBeContacted: '',
-    };
+    state = {};
 
-    componentDidMount=()=>{
-       this.props.dispatch({type: 'GET_ALUMNI_PROFILE_INFO'});
-        // console.log(this.props.alumniRegistrationReducer.alumniInfoForProfile);
-    
+    componentDidMount() {
+        this.props.dispatch({ type: 'GET_ALUMNI_PROFILE_INFO' });
     }
 
-    render(){
-        return (
-            <div>
-                <h1>{this.state.firstName}</h1>
-            </div>
-        )
-    }
-
+    componentDidUpdate() {
+       let array = this.props.alumniInfo.alumniInfoForProfile;
+    for (let item of array){
+    if (this.props.alumniInfo.alumniInfoForProfile.user_id === this.props.user.id) {
+                this.setState (item);
+                console.log('compdidupdate!!!',this.state);
 }
+        // array.forEach(element => {
+        //     if (this.props.alumniInfo.alumniInfoForProfile.user_id == this.props.user.id) {
+        //         this.setState =element;
+        //         console.log(this.state);
+                
+        //     }
+        // });
+        
+            //     }
+            //     // this.setState (this.props.alumniInfo.alumniInfoForProfile)
+            //    this.props.user.id
 
-// Instead of taking everything from state, we just want the error messages.
-// if you wanted you could write this code like this:
-// const mapStateToProps = ({errors}) => ({ errors });
-const mapStateToProps = state => ({
-    errors: state.errors,
-});
+        }
+    }
+    
+        getInfo = () => {
+            if (this.state)
+                this.setState(this.props.alumniInfo);
 
-export default connect(mapStateToProps)(ProfilePage);
+
+        }
+
+        render(){
+            return (
+                <div>
+
+                </div>
+            )
+
+        }
+
+    }
+
+    // Instead of taking everything from state, we just want the error messages.
+    // if you wanted you could write this code like this:
+    // const mapStateToProps = ({errors}) => ({ errors });
+    const mapStateToProps = state => ({
+        errors: state.errors,
+        user: state.user,
+        alumniInfo: state.alumniRegistrationReducer
+    });
+
+    export default connect(mapStateToProps)(ProfilePage);
 

@@ -1,6 +1,6 @@
 import { put, takeEvery } from 'redux-saga/effects';
 import axios from 'axios';
-import alumniRegistrationReducer from '../reducers/alumniReducer';
+import userReducer from '../reducers/userReducer';
 import { connect } from 'react-redux';
 
 
@@ -12,7 +12,7 @@ function* alumniNewInfo(action) {
     try {
         yield axios({
             method: 'POST',
-            url: '/api/alumniInfo',
+            url: `/api/alumniInfo/`,
             data: objectToPost
         })
     } catch (error) {
@@ -23,13 +23,14 @@ function* alumniNewInfo(action) {
 function* alumniGetInfo(action) {
     let profileObject={};
     try {
+        
         yield axios({
             method: 'GET',
-            url: `api/alumniInfo`
+            url: 'api/alumniInfo'
         })
             .then(response => {
                 console.log('logging response.data from profile get', response.data);
-                profileObject= response.data[0]
+                profileObject= response.data
                 console.log('testing profile array', profileObject);
                 
             })
@@ -49,4 +50,7 @@ function* alumniRegistrationSaga() {
 
 }
 
-export default alumniRegistrationSaga;
+
+
+
+export default (alumniRegistrationSaga);

@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 
 class AlumniRegistration extends Component {
     state = {
+        userId: this.props.user.id,
         firstName: '',
         lastName: '',
         email: '',
@@ -210,6 +211,7 @@ class AlumniRegistration extends Component {
 // const mapStateToProps = ({errors}) => ({ errors });
 const mapStateToProps = state => ({
     errors: state.errors,
+    user: state.user
 });
 
 export default connect(mapStateToProps)(AlumniRegistration);

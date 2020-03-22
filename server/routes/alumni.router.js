@@ -10,7 +10,7 @@ const router = express.Router();
 
 router.post('/', (req, res) => {
     console.log('logging from post inalumni router', req.body.firstName);
-    const userId = 1
+    const userId = req.body.userId
     const firstName = req.body.firstName;
     const lastName = req.body.lastName;
     const email = req.body.email;
@@ -24,7 +24,7 @@ router.post('/', (req, res) => {
     const volunteerWork = req.body.volunteerWork;
     const newsList = req.body.newsList;
     const willingToBeContacted = req.body.willingToBeContacted;
-    console.log('logging after setting analogs:', lastName);
+
     
     const queryText = `INSERT INTO "user_info" ("user_id","firstName","lastName","email","phoneNumber","age","gender","yearsAtCamp","favoriteActivity","favoriteMemory","annualFund","volunteerWork","newsList","willingToBeContacted") VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14)`;
     const values = [userId, firstName, lastName, email, phoneNumber, age, gender, yearsAtCamp, favoriteActivity, favoriteMemory, annualFund, volunteerWork, newsList, willingToBeContacted];
@@ -34,12 +34,27 @@ router.post('/', (req, res) => {
 });
 
 router.get ('/', (req,res) =>{
-    const queryText = `SELECT * FROM "user_info" `
+    const queryText = `SELECT * FROM "user_info"`
+    pool.query(queryText)
+        .then(results => {
+
+            res.send(results.rows)})
+        .catch((error) => res.send(error));
+})
+
+router.get('/search/:category&:search', (req, res) => {
+    console.log(req.params.category);
+    var categoryQuery= req.params.category
+    var searchQuery = req.params.search
+    console.log('param analog', categoryQuery);
+    
+    const queryText = `SELECT * FROM "user_info" WHERE "user_info"."${categoryQuery}" iLIKE '%${searchQuery}%'`
     pool.query(queryText)
         .then(results => {
             console.log(results.rows);
-            
-            res.send(results.rows)})
+
+            res.send(results.rows)
+        })
         .catch((error) => res.send(error));
 })
 
