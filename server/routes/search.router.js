@@ -36,7 +36,7 @@ router.post('/', (req, res) => {
 
 router.get('/:category&:search', (req, res) => {
     console.log(req.body);
-    let categoryQuery= req.params.category
+    let categoryQuery = req.params.category
     let searchQuery = req.params.search
     console.log('param analog', searchQuery);
 
@@ -44,7 +44,6 @@ router.get('/:category&:search', (req, res) => {
     pool.query(queryText)
         .then(results => {
             console.log(results.rows);
-
             res.send(results.rows)
         })
         .catch((error) => res.send(error));

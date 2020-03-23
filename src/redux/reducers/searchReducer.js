@@ -9,9 +9,20 @@ const searchParameters = (state = {}, action) => {
     }
 };
 
+const searchResults = (state = [], action) => {
+    switch (action.type) {
+        case 'SET_SEARCH_RESULTS':
+            return action.data;
+        default:
+            return state;
+    }
+};
+
+
 // user will be on the redux state at:
 // state.user
 
 export default combineReducers({
-    searchParameters
+    searchParameters,
+    searchResults
 });

@@ -16,8 +16,9 @@ import ProtectedRoute from '../ProtectedRoute/ProtectedRoute'
 import AboutPage from '../AboutPage/AboutPage';
 import UserPage from '../UserPage/UserPage';
 import InfoPage from '../InfoPage/InfoPage';
-import AlumniRegistrationPage from '../AlumniRegistration/AlumniRegistration'
+import AlumniRegistration from '../AlumniRegistration/AlumniRegistration'
 import ProfilePage from '../ProfilePage/ProfilePage'
+import SearchResultsPage from '../SearchResults/SearchResults'
 import './App.css';
 
 class App extends Component {
@@ -59,13 +60,19 @@ class App extends Component {
             <ProtectedRoute
               exact
               path="/alumniRegistration"
-              component={AlumniRegistrationPage}
+              component={AlumniRegistration}
             />
             <ProtectedRoute
               exact
               path="/profilePage"
               component={ProfilePage}
             />
+            <ProtectedRoute
+              exact
+              path="/searchResultsPage"
+              component={SearchResultsPage}
+            />
+           
             {/* If none of the other routes matched, we will show a 404. */}
             <Route render={() => <h1>404</h1>} />
           </Switch>

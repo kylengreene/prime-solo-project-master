@@ -14,6 +14,7 @@ class UserPage extends Component {
      type:'ALUMNI_SEARCH_QUERY',
       payload: this.state
     })
+    this.props.history.push('/searchResultsPage');
 
   }
   handleChange = propertyName => (event) => {
@@ -39,11 +40,13 @@ console.log(this.state);
             href="https://www.facebook.com/campicaghowan">YMCA Camp Icaghowan</a></blockquote>
           {/* <LogOutButton className="log-in" /> */}
         </div>
-        <form onSubmit={this.searchAlumni}>
+        <form className="searchForm" onSubmit={this.searchAlumni}>
           <select onChange={this.handleChange('category')} value={this.state.category} placeholder='category'>
             <option value="firstName">First Name</option>
-            <option value ="lastName">Last Name</option>
+            <option value="lastName">Last Name</option>
             <option value="email">Email</option>
+            <option value="yearsAtCamp">Year spent at Camp</option>
+            <option value="phoneNumber">Phone Number</option>
           </select>
           <input onChange={this.handleChange('search')} value={this.state.search} placeholder='search'></input>
           <input

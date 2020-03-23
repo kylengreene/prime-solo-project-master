@@ -40,7 +40,7 @@ class AlumniRegistration extends Component {
         return (
             <div>
 
-                <form onSubmit={this.alumniRegistration}>
+                <form className="alumniRegistrationForm" onSubmit={this.alumniRegistration}>
                     <h1>Alumni Information</h1>
                     <div>
                         <label htmlFor="firstName">

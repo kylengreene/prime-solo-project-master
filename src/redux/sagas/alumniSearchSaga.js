@@ -7,26 +7,26 @@ import { connect } from 'react-redux';
 
 function* alumniSearch(action) {
    console.log('logging search inputs from saga', action.payload);
-    yield put({ type: 'SET_NEW_ALUMNI_SEARCH', data: action.payload})
-   
+    yield put({ type: 'SET_NEW_ALUMNI_SEARCH', data: action.payload});
+    let searchResponseObject = {};
     try {
         // ${ action.payload.category } /${action.payload.search}
         yield axios.get(`/api/search/${action.payload.category}&${action.payload.search}`
           
         )
             .then(response => {
-                // console.log('logging response.data from search get', response.data);
-                // profileObject = response.data
-                // console.log('testing profile array', profileObject);
+                console.log('logging response.data from search get', response.data);
+                searchResponseObject = response.data
+                console.log('testing profile array', searchResponseObject);
 
             })
     } catch (error) {
         console.log(error);
     }
-//     yield put({
-//         type: 'SET_ALUMNI_SEARCH_RESULTS',
-//         data: profileObject
-//     })
+    yield put({
+        type: 'SET_SEARCH_RESULTS',
+        data: searchResponseObject
+    })
 }
 
 
