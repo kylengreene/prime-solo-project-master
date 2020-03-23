@@ -34,11 +34,11 @@ router.post('/', (req, res) => {
 });
 
 
-router.get('/:category/:search', (req, res) => {
-    console.log(req.params);
+router.get('/:category&:search', (req, res) => {
+    console.log(req.body);
     let categoryQuery= req.params.category
     let searchQuery = req.params.search
-    console.log('param analog', categoryQuery);
+    console.log('param analog', searchQuery);
 
     const queryText = `SELECT * FROM "user_info" WHERE "user_info"."${categoryQuery}" iLIKE '%${searchQuery}%'`
     pool.query(queryText)

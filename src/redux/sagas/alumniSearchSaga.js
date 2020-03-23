@@ -10,13 +10,10 @@ function* alumniSearch(action) {
     yield put({ type: 'SET_NEW_ALUMNI_SEARCH', data: action.payload})
    
     try {
-
-        yield axios.get(`/api/search/${action.payload.category}/${action.payload.search}`, {
-            // params: {
-            //     category: `${action.payload.category}`,
-            //     search: `${action.payload.search}`
-            // }
-        })
+        // ${ action.payload.category } /${action.payload.search}
+        yield axios.get(`/api/search/${action.payload.category}&${action.payload.search}`
+          
+        )
             .then(response => {
                 // console.log('logging response.data from search get', response.data);
                 // profileObject = response.data
