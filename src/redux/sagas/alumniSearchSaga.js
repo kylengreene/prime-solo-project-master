@@ -4,32 +4,18 @@ import userReducer from '../reducers/userReducer';
 import { connect } from 'react-redux';
 
 
-// function* alumniNewInfo(action) {
-//     yield console.log('logging from alumniNewInfo', action.payload);
-//     const objectToPost = action.payload
-//     console.log(objectToPost);
-//     yield put({ type: 'SET_NEW_ALUMNI_INFO', data: action.payload })
-//     try {
-//         yield axios({
-//             method: 'POST',
-//             url: `/api/alumniInfo/`,
-//             data: objectToPost
-//         })
-//     } catch (error) {
-//         console.log(error);
-//     }
-// }
 
 function* alumniSearch(action) {
    console.log('logging search inputs from saga', action.payload);
+    yield put({ type: 'SET_NEW_ALUMNI_SEARCH', data: action.payload})
    
     try {
 
-        yield axios.get('/api/alumniInfo/', {
-            search: {
-                category: action.payload.category,
-                search: action.payload.search
-            }
+        yield axios.get(`/api/search/${action.payload.category}/${action.payload.search}`, {
+            // params: {
+            //     category: `${action.payload.category}`,
+            //     search: `${action.payload.search}`
+            // }
         })
             .then(response => {
                 // console.log('logging response.data from search get', response.data);
