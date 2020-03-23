@@ -21,6 +21,12 @@ class LoginPage extends Component {
     } else {
       this.props.dispatch({ type: 'LOGIN_INPUT_ERROR' });
     }
+    if (this.props.user) {
+      this.props.history.push('/home')
+    }
+    else {
+      this.props.history.push('/alumniRegistration')
+    }
   } // end login
 
   handleInputChangeFor = propertyName => (event) => {
@@ -92,6 +98,7 @@ class LoginPage extends Component {
 // const mapStateToProps = ({errors}) => ({ errors });
 const mapStateToProps = state => ({
   errors: state.errors,
+  user: state.user
 });
 
 export default connect(mapStateToProps)(LoginPage);
