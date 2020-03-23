@@ -27,6 +27,7 @@ class AlumniRegistration extends Component {
             type: 'NEW_ALUMNI_INFO',
             payload: this.state
         })
+        this.props.history.push('/');
     } // end alumniRegistration
 
     handleInputChangeFor = propertyName => (event) => {
