@@ -1,7 +1,5 @@
 import { put, takeEvery } from 'redux-saga/effects';
 import axios from 'axios';
-import userReducer from '../reducers/userReducer';
-import { connect } from 'react-redux';
 
 
 function* alumniNewInfo(action) {
@@ -48,11 +46,26 @@ function* alumniGetInfo(action) {
 
 }
 
+function* editUerInfo(action){
+    try {
+
+        yield axios({
+            method: 'PUT',
+            url: 'api/alumniInfo/edit',
+            data: action.payload
+        })
+            .then(response => {
+                console.log('logging response.data from profile put', response.data);
+            })
+    } catch (error) {
+        console.log(error);
+}
+}
 
 function* alumniRegistrationSaga() {
     yield takeEvery('NEW_ALUMNI_INFO', alumniNewInfo);
-    yield takeEvery('GET_ALUMNI_PROFILE_INFO', alumniGetInfo)
-
+    yield takeEvery('GET_ALUMNI_PROFILE_INFO', alumniGetInfo);
+    yield takeEvery('EDITED_USER_INFO', editUerInfo);
 }
 
 

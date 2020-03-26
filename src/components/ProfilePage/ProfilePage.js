@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import Async from 'react-promise';
+import { Link } from 'react-router-dom';
 
 class ProfilePage extends Component {
     state = {};
@@ -10,15 +10,13 @@ class ProfilePage extends Component {
 
     }
 
-    componentDidUpdate() {
-
-
+    handleEditClick(event){
+        event.preventDefault();
+        console.log(this.props);
+        // this.props.history.push('/editProfilePage');
     }
 
-    getInfo = () => {
-        if (this.state)
-            this.setState(this.props.alumniInfo);
-    }
+
 
     render() {
         return (
@@ -29,7 +27,7 @@ class ProfilePage extends Component {
                         <h2>First Name: {this.props.alumniInfo.userSpecificProfile.firstName}</h2>
                         <h2>Last Name: {this.props.alumniInfo.userSpecificProfile.lastName}</h2>
                         <h2>Email: {this.props.alumniInfo.userSpecificProfile.email}</h2>
-                        <h2>Phone Number{this.props.alumniInfo.userSpecificProfile.phoneNumber}</h2>
+                        <h2>Phone Number: {this.props.alumniInfo.userSpecificProfile.phoneNumber}</h2>
                         <h2>Age: {this.props.alumniInfo.userSpecificProfile.age}</h2>
                         <h2>Gender: {this.props.alumniInfo.userSpecificProfile.gender}</h2>
                         <h2>Years At Camp: {this.props.alumniInfo.userSpecificProfile.yearsAtCamp}</h2>
@@ -42,12 +40,13 @@ class ProfilePage extends Component {
                     </div>
 
                 }
-
+                <>
+                <Link to='/editProfilePage'>Edit Profile</Link>
+                </>
             </>
         )
 
     }
-
 }
 
 // Instead of taking everything from state, we just want the error messages.

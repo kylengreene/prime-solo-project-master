@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import LogOutButton from '../LogOutButton/LogOutButton';
+
 
 // This is the page where the user will land upon log in. 
 //It includes a Facebook feed of camp updates as well as a search box to search for alumni. 

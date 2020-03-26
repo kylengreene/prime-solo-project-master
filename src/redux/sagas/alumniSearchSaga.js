@@ -1,7 +1,5 @@
 import { put, takeEvery } from 'redux-saga/effects';
 import axios from 'axios';
-import userReducer from '../reducers/userReducer';
-import { connect } from 'react-redux';
 
 
 
