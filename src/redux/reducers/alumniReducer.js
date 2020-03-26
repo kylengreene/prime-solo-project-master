@@ -11,7 +11,16 @@ const alumniRegistrationReducer = (state = {}, action) => {
 
 const alumniInfoForProfile = (state={},action) =>{
     switch (action.type) {
-        case 'SET_ALUMNI_PROFILE':
+        case 'SET_ALUMNI_PROFILES':
+            return action.data;
+        default:
+            return state;
+    }
+}
+
+const userSpecificProfile = (state = {}, action) => {
+    switch (action.type) {
+        case 'SET_USER_PROFILE':
             return action.data;
         default:
             return state;
@@ -23,6 +32,7 @@ const alumniInfoForProfile = (state={},action) =>{
 
 export default combineReducers({
     alumniRegistrationReducer,
-    alumniInfoForProfile
+    alumniInfoForProfile,
+    userSpecificProfile
 });
 

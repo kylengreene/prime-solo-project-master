@@ -21,26 +21,31 @@ function* alumniNewInfo(action) {
 }
 
 function* alumniGetInfo(action) {
-    let profileObject={};
+    let profileArray = {};
     try {
-        
+
         yield axios({
             method: 'GET',
             url: 'api/alumniInfo'
         })
             .then(response => {
                 console.log('logging response.data from profile get', response.data);
-                profileObject= response.data
-                console.log('testing profile array', profileObject);
-                
+                profileArray = response.data
+                console.log('testing profile array', profileArray);
+
             })
     } catch (error) {
         console.log(error);
     }
     yield put({
-        type: 'SET_ALUMNI_PROFILE',
-        data: profileObject
+        type: 'SET_ALUMNI_PROFILES',
+        data: profileArray
     })
+    yield put({
+        type: 'SET_USER_PROFILE',
+        data: profileArray[action.payload - 1]
+    })
+
 }
 
 

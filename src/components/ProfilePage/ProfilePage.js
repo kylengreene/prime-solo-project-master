@@ -6,27 +6,14 @@ class ProfilePage extends Component {
     state = {};
 
     componentDidMount() {
-        this.props.dispatch({ type: 'GET_ALUMNI_PROFILE_INFO' });
-     
+        this.props.dispatch({ type: 'GET_ALUMNI_PROFILE_INFO', payload:this.props.user.id }); 
     }
 
     componentDidUpdate() {
         let array = this.props.alumniInfo.alumniInfoForProfile;
         console.log('array analog', array);
-
-       
-    
-        // array.forEach(element => {
-        //     if (this.props.alumniInfo.alumniInfoForProfile.user_id == this.props.user.id) {
-        //         this.setState =element;
-        //         console.log(this.state);
-                
-        //     }
-        // });
-        
-            //     }
-            //     // this.setState (this.props.alumniInfo.alumniInfoForProfile)
-            //    this.props.user.id
+        let userIndex = this.props.user.id;
+        console.log('user index here', userIndex);
     }
     
         getInfo = () => {
@@ -37,18 +24,19 @@ class ProfilePage extends Component {
         render(){
             return (
                 <div>
-                {this.props.alumniInfo.alumniInfoForProfile ?
+                {/* {this.props.alumniInfo.alumniInfoForProfile ?
                         <div>
                             {this.props.alumniInfo.alumniInfoForProfile.map(person =>{
                                 if (person.id === this.props.user.id) {
                                     return <h1>{person.firstName}</h1>
                                 }
                             })}
-                        }
-                            {JSON.stringify(this.props.alumniInfo.alumniInfoForProfile[0])}</div>
+                        } */}
+                        <div>
+                            {JSON.stringify(this.props.alumniInfo.alumniInfoForProfile[this.userIndex])}</div>
                         :
                         <div>Loading...</div>
-                    }
+                    
                 </div>
             )
 
