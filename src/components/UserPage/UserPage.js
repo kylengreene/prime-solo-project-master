@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import './UserPage.css';
 
 
 // This is the page where the user will land upon log in. 
@@ -31,7 +32,7 @@ class UserPage extends Component {
   render() {
     return (
       <>
-        <div>
+        <div className="UserPage">
           <h1 id="welcome">
             Welcome, {this.props.user.username}!
     </h1>
@@ -42,7 +43,7 @@ class UserPage extends Component {
           <blockquote cite="https://www.facebook.com/campicaghowan" className="fb-xfbml-parse-ignore"><a
             href="https://www.facebook.com/campicaghowan">YMCA Camp Icaghowan</a></blockquote>
           {/* <LogOutButton className="log-in" /> */}
-        </div>
+       
         <form className="searchForm" onSubmit={this.searchAlumni}>
           <select onChange={this.handleChange('category')} value={this.state.category} placeholder='category'>
             <option value="firstName">First Name</option>
@@ -59,6 +60,7 @@ class UserPage extends Component {
             value="Search"
           />
         </form>
+        </div>
       </>
 
     )

@@ -27,3 +27,8 @@ CREATE TABLE "user_info" (
 "newsList"VARCHAR(50),
 "willingToBeContacted"VARCHAR(50)
 );
+
+-- Here is a test data input 
+INSERT INTO "user" ("username", "password" ) VALUES ('test', 'test');
+INSERT INTO "user_info" ("user_id","firstName","lastName","email","phoneNumber","age","gender","yearsAtCamp","favoriteActivity","favoriteMemory","annualFund","volunteerWork","newsList","willingToBeContacted") 
+VALUES (1, 'Kyle', 'Greene', 'kyle@kylegreene.com', 111111111, 26, 'Male', 4, 'Kayaking', 'CHURPLE', 'Sure', 'No', 'yes', 'No');

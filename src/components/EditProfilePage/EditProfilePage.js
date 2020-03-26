@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import Swal from 'sweetalert2'
 
 class EditProfilePage extends Component {
     state = {
@@ -27,13 +28,32 @@ class EditProfilePage extends Component {
 
     editUserProfile = (event) => {
         event.preventDefault();
-        console.log('firing editUserProfile with object:', this.state);
 
-        this.props.dispatch({
-            type: 'EDITED_USER_INFO',
-            payload: this.state
+        Swal.fire({
+            title: 'Are you sure you want to save these edits?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, submit these edits it!'
+        }).then((result) => {
+            if (result.value) {
+                Swal.fire(
+                    'Edits Saved!',
+                    'Your profile has been edited.',
+                    'success'
+                )
+                console.log('firing editUserProfile with object:', this.state);
+
+                this.props.dispatch({
+                    type: 'EDITED_USER_INFO',
+                    payload: this.state
+                })
+                this.props.dispatch({ type: 'GET_ALUMNI_PROFILE_INFO', payload: this.props.user.id });
+                this.props.history.push('/profilePage');
+            }
         })
-        this.props.history.push('/profilePage');
+      
     } // end alumniRegistration
 
     handleInputChangeFor = propertyName => (event) => {
@@ -198,7 +218,7 @@ class EditProfilePage extends Component {
                             className="edit"
                             type="submit"
                             name="edit"
-                            value="Edit Profile"
+                            value="Save Edits To Profile"
                         />
                     </div>
 
