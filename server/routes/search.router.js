@@ -33,7 +33,6 @@ router.post('/', (req, res) => {
         .catch((error) => res.sendStatus(error));
 });
 
-
 router.get('/:category&:search', (req, res) => {
     console.log(req.body);
     let categoryQuery = req.params.category

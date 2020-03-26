@@ -2,16 +2,19 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import LogOutButton from '../LogOutButton/LogOutButton';
 
-// this could also be written with destructuring parameters as:
-// const UserPage = ({ user }) => (
-// and then instead of `props.user.username` you could use `user.username`
+// This is the page where the user will land upon log in. 
+//It includes a Facebook feed of camp updates as well as a search box to search for alumni. 
+
 class UserPage extends Component {
-  state = {};
+  state = {
+    category: "firstName",
+    search: ""
+  };
 
   searchAlumni = (event) => {
     event.preventDefault();
-   this.props.dispatch({
-     type:'ALUMNI_SEARCH_QUERY',
+    this.props.dispatch({
+      type: 'ALUMNI_SEARCH_QUERY',
       payload: this.state
     })
     this.props.history.push('/searchResultsPage');
@@ -21,7 +24,7 @@ class UserPage extends Component {
     this.setState({
       [propertyName]: event.target.value,
     });
-console.log(this.state);
+    console.log(this.state);
 
   }
 

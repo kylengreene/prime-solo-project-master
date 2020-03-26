@@ -2,11 +2,13 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import LogOutButton from '../LogOutButton/LogOutButton';
 
-// this could also be written with destructuring parameters as:
-// const UserPage = ({ user }) => (
-// and then instead of `props.user.username` you could use `user.username`
+// This page is accessed upon selecting search from user page. It displays search results.
+
 class SearchResultsPage extends Component {
-    state = {};
+    state = {
+        category: "firstName",
+        search: ''
+    };
 
     searchAlumni = (event) => {
         event.preventDefault();
@@ -26,7 +28,7 @@ class SearchResultsPage extends Component {
     render() {
         return (
             <>
-                
+
                 <form className="searchForm" onSubmit={this.searchAlumni}>
                     <select onChange={this.handleChange('category')} value={this.state.category} placeholder='category'>
                         <option value="firstName">First Name</option>
@@ -45,9 +47,9 @@ class SearchResultsPage extends Component {
                 </form>
                 <h1>SEARCH RESULTS</h1>
                 <ul>
-                    {this.props.results.searchResults.map((result) =>{
+                    {this.props.results.searchResults.map((result) => {
                         return (
-                            <li key={result.id}>{result.firstName} {result.lastName}</li>
+                            <li key={result.id}>{result.firstName} {result.lastName} (Years at Camp): {result.yearsAtCamp}</li>
                         )
                     })}
                 </ul>
