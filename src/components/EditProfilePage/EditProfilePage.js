@@ -49,7 +49,7 @@ class EditProfilePage extends Component {
                     type: 'EDITED_USER_INFO',
                     payload: this.state
                 })
-                this.props.dispatch({ type: 'GET_ALUMNI_PROFILE_INFO', payload: this.props.user.id });
+                this.props.dispatch({ type: 'GET_USER_PROFILE', payload: this.props.user.id });
                 this.props.history.push('/profilePage');
             }
         })
