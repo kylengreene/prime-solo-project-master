@@ -27,10 +27,27 @@ function* alumniSearch(action) {
     })
 }
 
+function* deleteUser(action) {
+    try {
+        yield axios.delete(`/api/search/${action.payload}`
+        )
+            .then(response => {
+                console.log('logging response from search delete', response.data);
+            })
+    } catch (error) {
+        console.log(error);
+    }
+    yield put({
+        type: 'SET_SEARCH_RESULTS',
+        data: {}
+    })
+}
+
+
 
 function* alumniRegistrationSaga() {
-    yield takeEvery('ALUMNI_SEARCH_QUERY', alumniSearch)
-
+    yield takeEvery('ALUMNI_SEARCH_QUERY', alumniSearch);
+    yield takeEvery('DELETE_USER', deleteUser);
 }
 
 

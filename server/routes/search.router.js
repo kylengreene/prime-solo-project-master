@@ -49,5 +49,20 @@ router.get('/:category&:search', (req, res) => {
 })
 
 
+router.delete('/:id', (req, res) => {
+    console.log(req.params.id);
+    let userToDelete = req.params.id
+    console.log('param analog', userToDelete);
+
+    const queryText = `DELETE FROM "user_info" WHERE "user_info"."user_id" = $1;`
+    pool.query(queryText,[userToDelete])
+        .then(results => {
+            console.log('deleting complete');
+            res.send(status)
+        })
+        .catch((error) => res.send(error));
+})
+
+
 
 module.exports = router;

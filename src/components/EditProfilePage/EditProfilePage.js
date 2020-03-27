@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import Swal from 'sweetalert2'
+import Swal from 'sweetalert2';
 
 class EditProfilePage extends Component {
     state = {
@@ -21,7 +21,7 @@ class EditProfilePage extends Component {
     };
 
     componentDidMount(){
-        this.setState (this.props.alumniInfo.userSpecificProfile);
+        this.setState (this.props.userProfile);
         console.log('logging in edit profile', this.state);
         
     }
@@ -236,7 +236,8 @@ class EditProfilePage extends Component {
 const mapStateToProps = state => ({
     errors: state.errors,
     user: state.user,
-    alumniInfo: state.alumniRegistrationReducer
+    alumniInfo: state.alumniRegistrationReducer,
+    userProfile: state.userProfile.userProfileReducer
 });
 
 export default connect(mapStateToProps)(EditProfilePage);

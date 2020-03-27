@@ -18,9 +18,9 @@ const alumniInfoForProfile = (state={},action) =>{
     }
 }
 
-const userSpecificProfile = (state = {}, action) => {
+const viewSpecificProfile = (state = {}, action) => {
     switch (action.type) {
-        case 'SET_USER_PROFILE':
+        case 'SET_VIEW_USER':
             return action.data;
         default:
             return state;
@@ -33,6 +33,6 @@ const userSpecificProfile = (state = {}, action) => {
 export default combineReducers({
     alumniRegistrationReducer,
     alumniInfoForProfile,
-    userSpecificProfile
+    viewSpecificProfile
 });
 

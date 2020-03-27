@@ -25,10 +25,16 @@ class SearchResultsPage extends Component {
 
     }
 
+    viewProfile = (id) => {
+        
+        this.props.history.push('/alumniProfile')
+    }
+
+
     render() {
         return (
             <>
-
+       
                 <form className="searchForm" onSubmit={this.searchAlumni}>
                     <select onChange={this.handleChange('category')} value={this.state.category} placeholder='category'>
                         <option value="firstName">First Name</option>
@@ -49,7 +55,7 @@ class SearchResultsPage extends Component {
                 <ul>
                     {this.props.results.searchResults.map((result) => {
                         return (
-                            <li key={result.id}>{result.firstName} {result.lastName} (Years at Camp): {result.yearsAtCamp}</li>
+                            <li key={result.id}>{result.firstName} {result.lastName} (Years at Camp): {result.yearsAtCamp}  <button onClick={() =>this.viewProfile(result.id)}>View Profile</button></li>
                         )
                     })}
                 </ul>

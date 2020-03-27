@@ -22,6 +22,9 @@ import SearchResultsPage from '../SearchResults/SearchResults'
 import EditProfilePage from '../EditProfilePage/EditProfilePage'
 import AdminLogIn from '../AdmingLogIn/AdminLogIn'
 import './App.css';
+import AdminSearch from '../AdminSearch/AdminSearch';
+import AlumniProfile from '../AlumniProfile/AlumniProfile';
+import AdminHome from '../AdminHome/AdminHome'
 
 class App extends Component {
   componentDidMount () {
@@ -57,6 +60,11 @@ class App extends Component {
               path="/home"
               component={UserPage}
             />
+            <ProtectedRoute
+              exact
+              path="/adminHome"
+              component={AdminHome}
+            />
             {/* This works the same as the other protected route, except that if the user is logged in,
             they will see the info page instead. */}
             <ProtectedRoute
@@ -83,6 +91,16 @@ class App extends Component {
               exact
               path="/editProfilePage"
               component={EditProfilePage}
+            />
+            <ProtectedRoute
+              exact
+              path="/adminSearch"
+              component={AdminSearch}
+            />
+            <ProtectedRoute
+              exact
+              path="/alumniProfile"
+              component={AlumniProfile}
             />
             {/* If none of the other routes matched, we will show a 404. */}
             <Route render={() => <h1>404</h1>} />

@@ -31,6 +31,7 @@ app.use('/api/search', searchRouter);
 app.use ('/api/profile', profileRouter);
 
 
+
 // Serve static files
 app.use(express.static('build'));
 

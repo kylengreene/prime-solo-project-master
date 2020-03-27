@@ -21,9 +21,9 @@ class AdminLogIn extends Component {
         } else {
             this.props.dispatch({ type: 'LOGIN_INPUT_ERROR' });
         }
-            if (this.props.user.admin) {
+           
             this.props.history.push('/adminHome')
-        }
+        
 
         // else {
         //     this.props.history.push('/')
@@ -35,6 +35,7 @@ class AdminLogIn extends Component {
             [propertyName]: event.target.value,
         });
     }
+
 
     render() {
         return (
@@ -48,7 +49,7 @@ class AdminLogIn extends Component {
                     </h2>
                 )}
                 <form className="logInForm" onSubmit={this.login}>
-                    <h1>Login</h1>
+                    <h1>Admin Login</h1>
                     <div>
                         <label htmlFor="username">
                             Username:

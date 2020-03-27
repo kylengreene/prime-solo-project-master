@@ -10,6 +10,7 @@ const userProfileReducer = (state = {}, action) => {
     }
 }
 
+
 export default combineReducers({
    userProfileReducer,
 });

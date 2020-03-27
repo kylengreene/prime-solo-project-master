@@ -7,7 +7,7 @@ class ProfilePage extends Component {
 
     componentDidMount() {
         this.props.dispatch({ type: 'GET_USER_PROFILE', payload: this.props.user.id });
-
+        console.log('testing id in profile', this.props.user.id);
     }
 
     handleEditClick(event){
