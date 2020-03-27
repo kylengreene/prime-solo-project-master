@@ -73,6 +73,13 @@ class RegisterPage extends Component {
               value="Register"
             />
           </div>
+          <button
+            type="button"
+            className="link-button"
+            onClick={() => { this.props.history.push('/adminLogin')}}
+          >
+            Admin Log In
+          </button>
         </form>
         <center>
           <button
