@@ -13,6 +13,7 @@ const userRouter = require('./routes/user.router');
 const alumniRouter = require('./routes/alumni.router');
 const searchRouter = require('./routes/search.router');
 const profileRouter = require ('./routes/profile.router');
+var sign_s3 = require('./controllers/sign_s3');
 // Body parser middleware
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -29,6 +30,7 @@ app.use('/api/user', userRouter);
 app.use ('/api/alumniInfo', alumniRouter);
 app.use('/api/search', searchRouter);
 app.use ('/api/profile', profileRouter);
+app.use('/api/sign_s3', sign_s3.sign_s3);
 
 
 

@@ -25,6 +25,7 @@ import './App.css';
 import AdminSearch from '../AdminSearch/AdminSearch';
 import AlumniProfile from '../AlumniProfile/AlumniProfile';
 import AdminHome from '../AdminHome/AdminHome'
+import AWS from '../Aws/Aws'
 
 class App extends Component {
   componentDidMount () {
@@ -71,6 +72,11 @@ class App extends Component {
               exact
               path="/info"
               component={InfoPage}
+            />
+            <ProtectedRoute
+              exact
+              path="/aws"
+              component={AWS}
             />
             <ProtectedRoute
               exact
