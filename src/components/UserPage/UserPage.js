@@ -14,8 +14,10 @@ import Picture8 from '/Users/kylegreene/Prime/Tier 3/Solo Project/prime-solo-pro
 // This is the page where the user will land upon log in. 
 //It includes a Facebook feed of camp updates as well as a search box to search for alumni. 
 
+
 class UserPage extends Component {
   state = {
+  
     category: "firstName",
     search: ""
   };

@@ -10,6 +10,7 @@ const router = express.Router();
 
 router.post('/', (req, res) => {
     console.log('logging from post inalumni router', req.body.firstName);
+    const queryString = buildQueryString(req.body);
     const userId = req.body.userId
     const firstName = req.body.firstName;
     const lastName = req.body.lastName;
