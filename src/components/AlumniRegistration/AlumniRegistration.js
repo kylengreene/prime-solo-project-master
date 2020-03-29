@@ -17,6 +17,7 @@ class AlumniRegistration extends Component {
         volunteerWork: '',
         newsList: '',
         willingToBeContacted: '',
+        url:''
     };
 
     alumniRegistration = (event) => {
@@ -27,7 +28,7 @@ class AlumniRegistration extends Component {
             type: 'NEW_ALUMNI_INFO',
             payload: this.state
         })
-        this.props.history.push('/');
+        this.props.history.push('/aws');
     } // end alumniRegistration
 
     handleInputChangeFor = propertyName => (event) => {

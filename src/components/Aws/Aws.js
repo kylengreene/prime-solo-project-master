@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import axios from 'axios';
 
 
@@ -13,7 +14,17 @@ class Aws extends Component {
             errorMessage: ""
         }
     }
-
+savePicture=()=>{
+   
+    this.props.dispatch({
+        type: 'SET_NEW_ALUMNI_PICTURE',
+        payload: {
+            url: this.state.url,
+            id: this.props.user.id
+        }
+    });
+    this.props.history.push('/profilePage')
+}
     handleChange = (ev) => {
         this.setState({ success: false, url: "" });
 
@@ -75,16 +86,31 @@ class Aws extends Component {
         return (
             <div className="App">
                 <center>
-                    <h1>UPLOAD A FILE</h1>
+                    <h1>Upload a Profile Picture</h1>
                     {this.state.success ? <SuccessMessage /> : null}
                     {this.state.error ? <ErrorMessage /> : null}
                     <input onChange={this.handleChange} ref={(ref) => { this.uploadInput = ref; }} type="file" />
                     <br />
                     <button onClick={this.handleUpload}>UPLOAD</button>
                 </center>
+                <div>
+                    {this.state.success &&
+                    <div>
+                    <h3>Preview</h3>
+                    <img src={this.state.url} />
+                    <button onClick={this.savePicture}>Save Profile Picture</button>
+                    </div>
+                    }
+                </div>
             </div>
         );
     }
 }
 
-export default Aws;
+
+const mapStateToProps = state => ({
+    errors: state.errors,
+    user: state.user
+});
+
+export default connect(mapStateToProps)(Aws);

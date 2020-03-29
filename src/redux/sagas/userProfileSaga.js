@@ -5,6 +5,8 @@ import axios from 'axios';
 function* getUserProfile(action){
     let id = action.payload
     let profileObject = '';
+    console.log('logging id before get', id);
+    
     try {
         yield axios({
             method: 'GET',

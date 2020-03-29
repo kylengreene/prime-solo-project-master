@@ -33,6 +33,15 @@ router.post('/', (req, res) => {
         .catch((error) => res.sendStatus(error));
 });
 
+router.put('/', (req, res) => {
+    console.log('logging from put inalumni router', req.body.url);
+    const picUrl=req.body.url
+    const alumniId=req.body.id
+    const queryText = `UPDATE "user_info" SET "url"=$1 WHERE "user_id" = $2`;
+    pool.query(queryText, [picUrl, alumniId])
+        .then(() => res.sendStatus(200))
+        .catch((error) => res.sendStatus(error));
+});
 router.get ('/', (req,res) =>{
     const queryText = `SELECT * FROM "user_info"`
     pool.query(queryText)

@@ -7,10 +7,11 @@ router.get('/:id', (req, res) => {
     let idNum = Number (req.params.id);
     console.log(idNum);
     
-    const queryText = `SELECT * FROM "user_info" WHERE "user_info"."id" = $1`
+    const queryText = `SELECT * FROM "user_info" WHERE "user_info"."user_id" = $1`
     pool.query(queryText,[idNum])
         .then(results => {
-
+            console.log(results.rows);
+            
             res.send(results.rows)
         })
         .catch((error) => res.send(error));

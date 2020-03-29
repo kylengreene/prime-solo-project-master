@@ -18,6 +18,23 @@ function* alumniNewInfo(action) {
     }
 }
 
+function* alumniProfilePicture(action) {
+    
+    const pictureToPost = action.payload
+    console.log(action.payload);
+    try {
+        yield axios({
+            method: 'PUT',
+            url: `/api/alumniInfo/`,
+            data: pictureToPost
+        })
+    } catch (error) {
+        console.log(error);
+    }
+ 
+}
+
+
 function* alumniGetInfo(action) {
     let profileArray = {};
     try {
@@ -51,6 +68,7 @@ function* alumniGetInfo(action) {
 function* alumniRegistrationSaga() {
     yield takeEvery('NEW_ALUMNI_INFO', alumniNewInfo);
     yield takeEvery('GET_ALUMNI_PROFILE_INFO', alumniGetInfo);
+    yield takeEvery('SET_NEW_ALUMNI_PICTURE', alumniProfilePicture)
 }
 
 

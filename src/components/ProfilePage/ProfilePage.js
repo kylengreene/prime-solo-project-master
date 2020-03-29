@@ -40,6 +40,7 @@ class ProfilePage extends Component {
                     </div>
 
                 }
+                <div>Profile Picture <img src={this.props.userInfo.url} /></div>
                 <>
                 <Link to='/editProfilePage'>Edit Profile</Link>
                 </>
