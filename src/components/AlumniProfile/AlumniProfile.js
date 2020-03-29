@@ -27,7 +27,7 @@ class AlumniProfile extends Component {
         return (
             <>
 
-                {this.props.userInfo &&
+                {this.props.search.url &&
                     <div>
                         <h2>First Name: {this.props.search.firstName}</h2>
                         <h2>Last Name: {this.props.search.lastName}</h2>
@@ -43,8 +43,9 @@ class AlumniProfile extends Component {
                         <h2>Would you like to be on our News list?: {this.props.search.newsList}</h2>
                         <h2>Are you willing to be contacted by camp?: {this.props.search.willingToBeContacted}</h2>
                     </div>
-
-                }
+    }
+                <div> <img src={this.props.search.url} /></div>
+                
                 <button onClick={this.takeMeBack}>Back To Search Results</button>
             </>
         )

@@ -1,12 +1,46 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import Button from '@material-ui/core/Button';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import TextField from '@material-ui/core/TextField';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Checkbox from '@material-ui/core/Checkbox';
+import Link from '@material-ui/core/Link';
+import Grid from '@material-ui/core/Grid';
+import Box from '@material-ui/core/Box';
+import Typography from '@material-ui/core/Typography';
+import { withStyles } from "@material-ui/core/styles";
+import Container from '@material-ui/core/Container';
+
+const styles = theme => ({
+  paper: {
+    marginTop: theme.spacing(8),
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+  },
+  avatar: {
+    margin: theme.spacing(1),
+    backgroundColor: theme.palette.secondary.main,
+  },
+  form: {
+    width: '100%', // Fix IE 11 issue.
+    marginTop: theme.spacing(1),
+  },
+  submit: {
+    margin: theme.spacing(3, 0, 2),
+  },
+  
+});
+
 
 class LoginPage extends Component {
+ 
   state = {
     username: '',
     password: '',
   };
-
+ 
   login = (event) => {
     event.preventDefault();
 
@@ -34,10 +68,12 @@ class LoginPage extends Component {
       [propertyName]: event.target.value,
     });
   }
-
+  
   render() {
+     const { classes } = this.props;
     return (
-      <div>
+      <Container component="main" maxWidth="xs">
+      <div className={classes.paper}>
         {this.props.errors.loginMessage && (
           <h2
             className="alert"
@@ -46,49 +82,63 @@ class LoginPage extends Component {
             {this.props.errors.loginMessage}
           </h2>
         )}
-        <form className="logInForm" onSubmit={this.login}>
+        <form className={classes.form} noValidate onSubmit={this.login}>
           <h1>Login</h1>
           <div>
-            <label htmlFor="username">
-              Username:
-              <input
-                type="text"
-                name="username"
-                value={this.state.username}
-                onChange={this.handleInputChangeFor('username')}
-              />
-            </label>
+            <TextField
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              id="username"
+              label="Username:"
+              name="username"
+              autoComplete="email"
+              autoFocus
+              value={this.state.username}
+              onChange={this.handleInputChangeFor('username')}
+            />
           </div>
           <div>
-            <label htmlFor="password">
-              Password:
-              <input
-                type="password"
-                name="password"
-                value={this.state.password}
-                onChange={this.handleInputChangeFor('password')}
-              />
-            </label>
+            <TextField
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              id="password"
+              label="Password"
+              name="password"
+              autoComplete="password"
+              autoFocus
+              value={this.state.password}
+              onChange={this.handleInputChangeFor('password')}
+            />
+           
           </div>
           <div>
-            <input
-              className="log-in"
+            <Button variant="contained" color="primary"
+                className={classes.submit}
+                fullWidth
+                variant="contained"
               type="submit"
               name="submit"
               value="Log In"
-            />
+            >
+              Log In
+              </Button>
           </div>
         </form>
         <center>
-          <button
+          <Button variant="contained" color="primary"
             type="button"
             className="link-button"
             onClick={() => {this.props.dispatch({type: 'SET_TO_REGISTER_MODE'})}}
           >
             Register / Admin 
-          </button>
+          </Button>
         </center>
       </div>
+      </Container>
     );
   }
 }
@@ -101,4 +151,5 @@ const mapStateToProps = state => ({
   user: state.user
 });
 
-export default connect(mapStateToProps)(LoginPage);
+
+export default connect(mapStateToProps)(withStyles(styles)(LoginPage));
