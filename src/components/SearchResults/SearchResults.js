@@ -12,9 +12,13 @@ class SearchResultsPage extends Component {
 
     searchAlumni = (event) => {
         event.preventDefault();
+        let searchArray = [];
+        searchArray.push(this.state);
+        console.log(searchArray);
+
         this.props.dispatch({
             type: 'ALUMNI_SEARCH_QUERY',
-            payload: this.state
+            payload: searchArray
         })
     }
     handleChange = propertyName => (event) => {

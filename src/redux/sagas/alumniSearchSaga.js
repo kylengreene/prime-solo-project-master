@@ -8,10 +8,10 @@ function* alumniSearch(action) {
     yield put({ type: 'SET_NEW_ALUMNI_SEARCH', data: action.payload});
     let searchResponseObject = {};
     try {
-        // ${ action.payload.category } /${action.payload.search}
-        yield axios.get(`/api/search/${action.payload.category}&${action.payload.search}`
+
+        yield axios.post(`/api/search/multiple`, action.payload)
           
-        )
+        
             .then(response => {
                 console.log('logging response.data from search get', response.data);
                 searchResponseObject = response.data

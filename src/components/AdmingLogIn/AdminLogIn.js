@@ -22,7 +22,7 @@ class AdminLogIn extends Component {
             this.props.dispatch({ type: 'LOGIN_INPUT_ERROR' });
         }
            
-            this.props.history.push('/adminHome')
+            this.props.history.push('/adminSearch')
         
 
         // else {

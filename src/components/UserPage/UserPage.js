@@ -15,9 +15,9 @@ import Picture8 from '/Users/kylegreene/Prime/Tier 3/Solo Project/prime-solo-pro
 //It includes a Facebook feed of camp updates as well as a search box to search for alumni. 
 
 
+
 class UserPage extends Component {
   state = {
-  
     category: "firstName",
     search: ""
   };
@@ -25,9 +25,13 @@ class UserPage extends Component {
 
   searchAlumni = (event) => {
     event.preventDefault();
+    let searchArray = [];
+    searchArray.push(this.state); 
+    console.log(searchArray);
+    
     this.props.dispatch({
       type: 'ALUMNI_SEARCH_QUERY',
-      payload: this.state
+      payload: searchArray
     })
     this.props.history.push('/searchResultsPage');
 

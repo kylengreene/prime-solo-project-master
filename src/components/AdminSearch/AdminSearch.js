@@ -2,6 +2,22 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Swal from 'sweetalert2';
 import { ExportToCsv } from 'export-to-csv';
+import Button from '@material-ui/core/Button';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import TextField from '@material-ui/core/TextField';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Checkbox from '@material-ui/core/Checkbox';
+import Link from '@material-ui/core/Link';
+import Grid from '@material-ui/core/Grid';
+import Box from '@material-ui/core/Box';
+import Typography from '@material-ui/core/Typography';
+import { withStyles } from "@material-ui/core/styles";
+import Container from '@material-ui/core/Container';
+import FormHelperText from '@material-ui/core/FormHelperText';
+import Select from '@material-ui/core/Select';
+import InputLabel from '@material-ui/core/InputLabel';
+import MenuItem from '@material-ui/core/MenuItem';
+import FormControl from '@material-ui/core/FormControl';
 
 
 // This page is accessed upon selecting search from user page. It displays search results.
@@ -12,25 +28,28 @@ const options = {
     decimalSeparator: '.',
     showLabels: true,
     showTitle: true,
-    title: 'My Awesome CSV',
+    title: 'Alumni Export',
     useTextFile: false,
     useBom: true,
     useKeysAsHeaders: true,
-    // headers: ['Column 1', 'Column 2', etc...] <-- Won't work with useKeysAsHeaders present!
 };
 const csvExporter = new ExportToCsv(options);
+let searchArray = [];
 class AdminSearch extends Component {
     state = {
-        category: "firstName",
-        search: ''
+       category:'firstName',
+       search:''
     };
 
     searchAlumni = (event) => {
         event.preventDefault();
+        console.log('testing search array un search function', searchArray);
+        
         this.props.dispatch({
             type: 'ALUMNI_SEARCH_QUERY',
-            payload: this.state
+            payload: searchArray
         })
+        searchArray = [];
     }
     handleChange = propertyName => (event) => {
         this.setState({
@@ -38,6 +57,12 @@ class AdminSearch extends Component {
         });
         console.log(this.state);
 
+    }
+
+    saveSpecificSearch = () =>{
+        searchArray.push(this.state) 
+        console.log('search array', searchArray);
+        
     }
 
     viewProfile = (id) =>{
@@ -50,7 +75,7 @@ class AdminSearch extends Component {
             title: 'Are you sure you want to delete this user?',
             icon: 'warning',
             showCancelButton: true,
-            confirmButtonColor: '#3085d6',
+            confirmButtonColor: 'primary',
             cancelButtonColor: '#d33',
             confirmButtonText: 'Yes, delete this user!'
         }).then((result) => {
@@ -80,7 +105,7 @@ class AdminSearch extends Component {
         return (
             <>
 
-                <form className="searchForm" onSubmit={this.searchAlumni}>
+                <form className="searchForm" onSubmit={this.saveSpecificSearch}>
                     <select onChange={this.handleChange('category')} value={this.state.category} placeholder='category'>
                         <option value="firstName">First Name</option>
                         <option value="lastName">Last Name</option>
@@ -89,13 +114,20 @@ class AdminSearch extends Component {
                         <option value="phoneNumber">Phone Number</option>
                     </select>
                     <input onChange={this.handleChange('search')} value={this.state.search} placeholder='search'></input>
-                    <input
-                        className="search"
-                        type="submit"
-                        name="submit"
-                        value="Search"
-                    />
+                    <input type="submit" value="Save Search Line"/> 
                 </form>
+                <form className="searchForm2" onSubmit={this.saveSpecificSearch}>
+                    <select onChange={this.handleChange('category')} value={this.state.category} placeholder='category'>
+                        <option value="firstName">First Name</option>
+                        <option value="lastName">Last Name</option>
+                        <option value="email">Email</option>
+                        <option value="yearsAtCamp">Year spent at Camp</option>
+                        <option value="phoneNumber">Phone Number</option>
+                    </select>
+                    <input onChange={this.handleChange('search')} value={this.state.search} placeholder='search'></input>
+                    <input type="submit" value="Save Search Line" /> 
+                </form>
+                <Button onClick={this.searchAlumni}>Search</Button>
                 <h1>Admin Search:</h1>
                 <ul>
                     {this.props.results.searchResults?

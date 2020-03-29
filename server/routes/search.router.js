@@ -5,33 +5,31 @@ const pool = require('../modules/pool');
 // const userStrategy = require('../strategies/user.strategy');
 
 const router = express.Router();
+let queryString = 'SELECT * FROM "user_info" WHERE';
 
-
-
-router.post('/', (req, res) => {
-    console.log('logging from post inalumni router', req.body.firstName);
-    const queryString = buildQueryString(req.body);
-    const userId = req.body.userId
-    const firstName = req.body.firstName;
-    const lastName = req.body.lastName;
-    const email = req.body.email;
-    const phoneNumber = Number(req.body.phoneNumber);
-    const age = req.body.age;
-    const gender = req.body.gender;
-    const yearsAtCamp = req.body.yearsAtCamp;
-    const favoriteActivity = req.body.favoriteActivity;
-    const favoriteMemory = req.body.favoriteMemory;
-    const annualFund = req.body.annualFund;
-    const volunteerWork = req.body.volunteerWork;
-    const newsList = req.body.newsList;
-    const willingToBeContacted = req.body.willingToBeContacted;
-
-
-    const queryText = `INSERT INTO "user_info" ("user_id","firstName","lastName","email","phoneNumber","age","gender","yearsAtCamp","favoriteActivity","favoriteMemory","annualFund","volunteerWork","newsList","willingToBeContacted") VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14)`;
-    const values = [userId, firstName, lastName, email, phoneNumber, age, gender, yearsAtCamp, favoriteActivity, favoriteMemory, annualFund, volunteerWork, newsList, willingToBeContacted];
-    pool.query(queryText, values)
-        .then(() => res.sendStatus(201))
+function buildQueryString(array) {
+    for (let i = 0; i < array.length; i++) {
+        if ([i] == array.length-1) {
+            queryString += ` "user_info"."${array[i].category}" iLIKE '%${array[i].search}%';`;
+        }
+        else {
+            queryString += ` "user_info"."${array[i].category}" iLIKE '%${array[i].search}%' AND`;
+        } 
+    }  
+}
+router.post('/multiple', (req, res) => {
+    console.log('logging array in search post', req.body);
+    let array = req.body;
+    buildQueryString(array);
+   console.log('logging querystring from post', queryString);
+    const queryText = queryString;
+    pool.query(queryText)
+        .then(results => {
+            console.log(results.rows);
+            res.send(results.rows)
+        })
         .catch((error) => res.sendStatus(error));
+    queryString = 'SELECT * FROM "user_info" WHERE';
 });
 
 router.get('/:category&:search', (req, res) => {
