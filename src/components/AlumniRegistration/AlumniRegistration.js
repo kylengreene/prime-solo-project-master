@@ -101,7 +101,7 @@ class AlumniRegistration extends Component {
                                     id="firstName"
                                     label="First Name"
                                     autoFocus
-                                    alue={this.state.firstName}
+                                    value={this.state.firstName}
                                     onChange={this.handleInputChangeFor('firstName')}
                                 />
                             </Grid>
