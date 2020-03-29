@@ -61,10 +61,10 @@ class EditProfilePage extends Component {
         willingToBeContacted: '',
     };
 
-    componentDidMount(){
-        this.setState (this.props.userProfile);
+    componentDidMount() {
+        this.setState(this.props.userProfile);
         console.log('logging in edit profile', this.state);
-        
+
     }
 
     editUserProfile = (event) => {
@@ -94,7 +94,7 @@ class EditProfilePage extends Component {
                 this.props.history.push('/profilePage');
             }
         })
-      
+
     } // end alumniRegistration
 
     handleInputChangeFor = propertyName => (event) => {
@@ -102,7 +102,7 @@ class EditProfilePage extends Component {
             [propertyName]: event.target.value,
         });
         console.log(this.state);
-        
+
 
     }
 
@@ -113,9 +113,9 @@ class EditProfilePage extends Component {
                 <CssBaseline />
                 <div className={classes.paper}>
                     <Typography component="h1" variant="h5">
-                        Alumni Information
+                        Edit Your Profile Information
         </Typography>
-                    <form className={classes.form} noValidate onSubmit={this.alumniRegistration}>
+                    <form className={classes.form} noValidate onSubmit={this.editUserProfile}>
                         <Grid container spacing={2}>
                             <Grid item xs={12} sm={6}>
                                 <TextField
@@ -312,24 +312,17 @@ class EditProfilePage extends Component {
 
                         </Grid>
                         <div>
-                            <input
-                                className="register"
+                            <Button
                                 type="submit"
-                                name="submit"
-                                value="Register"
-                            />
+                                fullWidth
+                                variant="contained"
+                                color="primary"
+                                className={classes.submit}
+                            >
+                                Save Edits
+                          </Button>
                         </div>
-
                     </form>
-                    <center> <button type="button"
-                        className="link-button"
-                        onClick={() => this.alumniRegistration}
-                    >
-                        Login
-          </button>
-                    </center>
-
-
                 </div>
             </Container>
         );

@@ -21,6 +21,30 @@ import FormControl from '@material-ui/core/FormControl';
 
 
 // This page is accessed upon selecting search from user page. It displays search results.
+const styles = theme => ({
+    paper: {
+        marginTop: theme.spacing(8),
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+    },
+    avatar: {
+        margin: theme.spacing(1),
+        backgroundColor: theme.palette.secondary.main,
+    },
+    form: {
+        width: '100%', // Fix IE 11 issue.
+        marginTop: theme.spacing(3),
+    },
+    submit: {
+        margin: theme.spacing(3, 0, 2),
+    },
+    formControl: {
+        margin: theme.spacing(1),
+        minWidth: 375,
+        marginTop: theme.spacing(-1)
+    }
+});
 
 const options = {
     fieldSeparator: ',',
@@ -102,32 +126,102 @@ class AdminSearch extends Component {
     }
 
     render() {
+        const { classes } = this.props;
         return (
             <>
+                <div className={classes.paper}>
+                    <Grid item xs={12} m={6} >
+                        <FormControl className={classes.form}>
+                            <InputLabel >Please select a Search Category</InputLabel>
+                            <Select
+                                id="category"
+                                type="category"
+                                name="category"
+                                value={this.state.category}
+                                onChange={this.handleChange('category')}
+                            >
+                                <MenuItem value="firstName">First Name</MenuItem>
+                                <MenuItem value="lastName">Last Name</MenuItem>
+                                <MenuItem value="email">Email</MenuItem>
+                                <MenuItem value="yearsAtCamp">Year spent at Camp</MenuItem>
+                                <MenuItem value="phoneNumber">Phone Number</MenuItem>
+                            </Select>
 
-                <form className="searchForm" onSubmit={this.saveSpecificSearch}>
-                    <select onChange={this.handleChange('category')} value={this.state.category} placeholder='category'>
-                        <option value="firstName">First Name</option>
-                        <option value="lastName">Last Name</option>
-                        <option value="email">Email</option>
-                        <option value="yearsAtCamp">Year spent at Camp</option>
-                        <option value="phoneNumber">Phone Number</option>
-                    </select>
-                    <input onChange={this.handleChange('search')} value={this.state.search} placeholder='search'></input>
-                    <input type="submit" value="Save Search Line"/> 
-                </form>
-                <form className="searchForm2" onSubmit={this.saveSpecificSearch}>
-                    <select onChange={this.handleChange('category')} value={this.state.category} placeholder='category'>
-                        <option value="firstName">First Name</option>
-                        <option value="lastName">Last Name</option>
-                        <option value="email">Email</option>
-                        <option value="yearsAtCamp">Year spent at Camp</option>
-                        <option value="phoneNumber">Phone Number</option>
-                    </select>
-                    <input onChange={this.handleChange('search')} value={this.state.search} placeholder='search'></input>
-                    <input type="submit" value="Save Search Line" /> 
-                </form>
-                <Button onClick={this.searchAlumni}>Search</Button>
+                        </FormControl>
+
+                        <TextField
+                            name="search"
+                            variant="outlined"
+                            required
+                            fullWidth
+                            id="search"
+                            label="Search"
+                            autoFocus
+                            // value={this.state.search}
+                            onChange={this.handleChange('search')}
+                        />
+                        <form className={classes.form} onSubmit={this.saveSpecificSearch}>
+                            <Button variant="contained" color="primary"
+                                // className={classes.submit}
+                                fullWidth
+                                variant="contained"
+                                type="submit"
+                                name="submit"
+                                value="Search"
+                            >
+                                Save First Parameter
+              </Button>
+                        </form>
+                    </Grid>
+                </div>
+                <div className={classes.paper}>
+                    <Grid item xs={12} m={6} >
+                        <FormControl className={classes.form}>
+                            <InputLabel >Please select a Search Category</InputLabel>
+                            <Select
+                                id="category"
+                                type="category"
+                                name="category"
+                                value={this.state.category}
+                                onChange={this.handleChange('category')}
+                            >
+                                <MenuItem value="firstName">First Name</MenuItem>
+                                <MenuItem value="lastName">Last Name</MenuItem>
+                                <MenuItem value="email">Email</MenuItem>
+                                <MenuItem value="yearsAtCamp">Year spent at Camp</MenuItem>
+                                <MenuItem value="phoneNumber">Phone Number</MenuItem>
+                            </Select>
+
+                        </FormControl>
+
+                        <TextField
+                            name="search"
+                            variant="outlined"
+                            required
+                            fullWidth
+                            id="search"
+                            label="Search Parameter"
+                            autoFocus
+                            // value={this.state.search}
+                            onChange={this.handleChange('search')}
+                        />
+                        <form className={classes.form} onSubmit={this.saveSpecificSearch}>
+                            <Button variant="contained" color="primary"
+                                // className={classes.submit}
+                                fullWidth
+                                variant="contained"
+                                type="submit"
+                                name="submit"
+                                value="Search"
+                            >
+                                Save Second Parameter
+              </Button>
+                            <Button className={classes.form} variant="contained" color="primary" onClick={this.searchAlumni}>Search</Button>
+                        </form>
+                        
+                    </Grid>
+                </div>
+                
                 <h1>Admin Search:</h1>
                 <ul>
                     {this.props.results.searchResults?
@@ -163,4 +257,4 @@ const mapStateToProps = state => ({
 });
 
 // this allows us to use <App /> in index.js
-export default connect(mapStateToProps)(AdminSearch);
+export default connect(mapStateToProps)(withStyles(styles)(AdminSearch));

@@ -141,7 +141,7 @@ class SearchResultsPage extends Component {
                 <ul>
                     {this.props.results.searchResults.map((result) => {
                         return (
-                            <li key={result.id}>{result.firstName} {result.lastName} (Years at Camp): {result.yearsAtCamp}  <button onClick={() =>this.viewProfile(result.id)}>View Profile</button></li>
+                            <li key={result.id} > <img height="150" src={result.url} /> {result.firstName} {result.lastName}  <button onClick={() => this.viewProfile(result.id)}> View {result.firstName}'s Profile</button></li>
                         )
                     })}
                 </ul>
