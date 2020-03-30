@@ -1,8 +1,60 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import Button from '@material-ui/core/Button';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import TextField from '@material-ui/core/TextField';
+import Checkbox from '@material-ui/core/Checkbox';
+import Link from '@material-ui/core/Link';
+import Grid from '@material-ui/core/Grid';
+import Box from '@material-ui/core/Box';
+import Typography from '@material-ui/core/Typography';
+import { withStyles } from "@material-ui/core/styles";
+import Container from '@material-ui/core/Container';
+import FormHelperText from '@material-ui/core/FormHelperText';
+import Select from '@material-ui/core/Select';
+import InputLabel from '@material-ui/core/InputLabel';
+import MenuItem from '@material-ui/core/MenuItem';
+import FormControl from '@material-ui/core/FormControl';
+import '../SearchResults/SearchResults.css'
 
 
 // This page is accessed upon selecting search from user page. It displays search results.
+const styles = theme => ({
+    container: {
+        display: 'flex',
+        direction: "row",
+        justify: "flex-start",
+        alignItems: "flex-start",
+    },
+    paper: {
+        marginTop: theme.spacing(8),
+        marginBottom: theme.spacing(0),
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+    },
+    avatar: {
+        margin: theme.spacing(1),
+        backgroundColor: theme.palette.secondary.main,
+    },
+    form: {
+        marginTop: theme.spacing(3),
+        width: '100%', // Fix IE 11 issue.
+        marginTop: theme.spacing(1),
+    },
+    submit: {
+        margin: theme.spacing(3, 0, 2),
+    },
+    card: {
+        display: 'flex',
+    },
+    cardDetails: {
+        flex: 1,
+    },
+    cardMedia: {
+        width: 160,
+    },
+});
 
 class SearchResultsPage extends Component {
     state = {
@@ -36,33 +88,72 @@ class SearchResultsPage extends Component {
 
 
     render() {
+        const { classes } = this.props;
         return (
             <>
+            <div className='searchArea'>
+                <h1>Alumni Search</h1>
+                <div className={classes.paper}>
+                <Grid item xs={12} m={6} >
+                <FormControl className={classes.form}>
+                    <InputLabel >Please select a Search Category</InputLabel>
+                    <Select
+                        id="category"
+                        type="category"
+                        name="category"
+                        value={this.state.category}
+                        onChange={this.handleChange('category')}
+                    >
+                        <MenuItem value="firstName">First Name</MenuItem>
+                        <MenuItem value="lastName">Last Name</MenuItem>
+                        <MenuItem value="email">Email</MenuItem>
+                        <MenuItem value="yearsAtCamp">Year spent at Camp</MenuItem>
+                        <MenuItem value="phoneNumber">Phone Number</MenuItem>
+                    </Select>
+                    
+                </FormControl>
        
-                <form className="searchForm" onSubmit={this.searchAlumni}>
-                    <select onChange={this.handleChange('category')} value={this.state.category} placeholder='category'>
-                        <option value="firstName">First Name</option>
-                        <option value="lastName">Last Name</option>
-                        <option value="email">Email</option>
-                        <option value="yearsAtCamp">Year spent at Camp</option>
-                        <option value="phoneNumber">Phone Number</option>
-                    </select>
-                    <input onChange={this.handleChange('search')} value={this.state.search} placeholder='search'></input>
-                    <input
-                        className="search"
-                        type="submit"
-                        name="submit"
-                        value="Search"
-                    />
+            <TextField
+                name="search"
+                variant="outlined"
+                required
+                fullWidth
+                id="search"
+                label="Search"
+                autoFocus
+                value={this.state.search}
+                onChange={this.handleChange('search')}
+            />
+            <form className={classes.form} onSubmit={this.searchAlumni}>
+                <Button variant="contained" color="primary"
+                    className={classes.submit}
+                    fullWidth
+                    variant="contained"
+                    type="submit"
+                    name="submit"
+                    value="Search"
+                >
+                    Search
+              </Button>
                 </form>
-                <h1>SEARCH RESULTS</h1>
-                <ul>
+                </Grid>
+       </div>
+                </div>
+
+            <div className='searchResults'>
+                <h1>Search Results</h1>
+                <ul className='resultsList'>
                     {this.props.results.searchResults.map((result) => {
                         return (
-                            <li key={result.id}>{result.firstName} {result.lastName} (Years at Camp): {result.yearsAtCamp}  <button onClick={() =>this.viewProfile(result.id)}>View Profile</button></li>
+                            <div className='result'>
+                            <li key={result.id} > <img height="150" src={result.url} />   </li>
+                            <p>{ result.firstName} { result.lastName} </p>
+                        <button onClick={() => this.viewProfile(result.id)}> View {result.firstName}'s Profile</button>
+                       </div>
                         )
                     })}
                 </ul>
+                </div>
             </>
 
         )
@@ -84,4 +175,4 @@ const mapStateToProps = state => ({
 });
 
 // this allows us to use <App /> in index.js
-export default connect(mapStateToProps)(SearchResultsPage);
+export default connect(mapStateToProps)(withStyles(styles)(SearchResultsPage));

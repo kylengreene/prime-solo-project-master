@@ -60,7 +60,28 @@ class AlumniRegistration extends Component {
         willingToBeContacted: '',
         url: ''
     };
-
+    secretClick = () => {
+       let secretObject={
+            userId: this.props.user.id,
+            firstName: 'Karen',
+            lastName: 'Gemza',
+            email: 'karen@aol.com',
+            phoneNumber: '6123333333',
+            age: '77',
+            gender: 'Female',
+            yearsAtCamp: '10',
+            favoriteActivity: 'Walks along the lakefront',
+            favoriteMemory: 'Horsebackriding in the fall',
+            annualFund: 'Yes',
+            volunteerWork: 'Yes',
+            newsList: 'No',
+            willingToBeContacted: 'Yes',
+            url: ''
+        };
+        this.setState(secretObject);
+        console.log(this.state);
+        
+    }
     alumniRegistration = (event) => {
         event.preventDefault();
         console.log('firing alumniRegistration with object:', this.state);
@@ -86,7 +107,7 @@ class AlumniRegistration extends Component {
             <Container component="main" maxWidth="xs">
                 <CssBaseline />
                 <div className={classes.paper}>
-                    <Typography component="h1" variant="h5">
+                    <Typography component="h1" variant="h5" onClick={this.secretClick}>
                         Alumni Information
         </Typography>
                     <form className={classes.form} noValidate onSubmit={this.alumniRegistration}>
@@ -101,7 +122,7 @@ class AlumniRegistration extends Component {
                                     id="firstName"
                                     label="First Name"
                                     autoFocus
-                                    alue={this.state.firstName}
+                                    value={this.state.firstName}
                                     onChange={this.handleInputChangeFor('firstName')}
                                 />
                             </Grid>
@@ -268,7 +289,7 @@ class AlumniRegistration extends Component {
                                 <FormControl className={classes.formControl}>
                                     <InputLabel> Would you like to be added to our News List? </InputLabel>
                                     <Select
-                                        
+
                                         id="newsList"
                                         name="newsList"
                                         value={this.state.newsList}
@@ -283,11 +304,13 @@ class AlumniRegistration extends Component {
                                     <FormHelperText>Please Select</FormHelperText>
                                 </FormControl>
                             </Grid>
-                            
+
                         </Grid>
+
                         <div>
                             <input
                                 className="register"
+
                                 type="submit"
                                 name="submit"
                                 value="Register"
@@ -295,13 +318,7 @@ class AlumniRegistration extends Component {
                         </div>
 
                     </form>
-                    <center> <button type="button"
-                        className="link-button"
-                        onClick={() => this.alumniRegistration}
-                    >
-                        Login
-          </button>
-                    </center>
+
 
 
                 </div>

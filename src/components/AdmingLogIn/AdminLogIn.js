@@ -1,5 +1,33 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import Button from '@material-ui/core/Button';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import TextField from '@material-ui/core/TextField';
+import { withStyles } from "@material-ui/core/styles";
+import Container from '@material-ui/core/Container';
+import Banner from '/Users/kylegreene/Prime/Tier 3/Solo Project/prime-solo-project-master/src/pictures/Icaghowan4C_GTC.jpg'
+
+
+const styles = theme => ({
+    paper: {
+        marginTop: theme.spacing(8),
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+    },
+    avatar: {
+        margin: theme.spacing(1),
+        backgroundColor: theme.palette.secondary.main,
+    },
+    form: {
+        width: '100%', // Fix IE 11 issue.
+        marginTop: theme.spacing(1),
+    },
+    submit: {
+        margin: theme.spacing(3, 0, 2),
+    },
+
+});
 
 class AdminLogIn extends Component {
     state = {
@@ -38,8 +66,12 @@ class AdminLogIn extends Component {
 
 
     render() {
+        const { classes } = this.props;
         return (
             <div>
+                <img src={Banner} style={{ marginLeft: '17%' }} />
+            <Container component="main" maxWidth="xs">
+            <div className={classes.paper}>
                 {this.props.errors.loginMessage && (
                     <h2
                         className="alert"
@@ -48,48 +80,57 @@ class AdminLogIn extends Component {
                         {this.props.errors.loginMessage}
                     </h2>
                 )}
-                <form className="logInForm" onSubmit={this.login}>
-                    <h1>Admin Login</h1>
-                    <div>
-                        <label htmlFor="username">
-                            Username:
-              <input
-                                type="text"
+              
+                    <form className={classes.form} noValidate onSubmit={this.login}>
+                        <h1>Admin Login</h1>
+                        <div>
+                            <TextField
+                                variant="outlined"
+                                margin="normal"
+                                required
+                                fullWidth
+                                id="username"
+                                label="Username:"
                                 name="username"
+                                autoComplete="username"
+                                autoFocus
                                 value={this.state.username}
                                 onChange={this.handleInputChangeFor('username')}
                             />
-                        </label>
-                    </div>
+                        </div>
                     <div>
-                        <label htmlFor="password">
-                            Password:
-              <input
-                                type="password"
-                                name="password"
-                                value={this.state.password}
-                                onChange={this.handleInputChangeFor('password')}
-                            />
-                        </label>
-                    </div>
-                    <div>
-                        <input
-                            className="log-in"
-                            type="submit"
-                            name="submit"
-                            value="Log In"
+                        <TextField
+                            variant="outlined"
+                            margin="normal"
+                            required
+                            fullWidth
+                            id="password"
+                            label="Password"
+                            name="password"
+                            autoComplete="password"
+                            autoFocus
+                            value={this.state.password}
+                            onChange={this.handleInputChangeFor('password')}
                         />
+
                     </div>
-                </form>
-                <center>
-                    <button
-                        type="button"
-                        className="link-button"
-                        onClick={() => { this.props.dispatch({ type: 'SET_TO_REGISTER_MODE' }) }}
-                    >
-                        Register / Admin
-          </button>
-                </center>
+                 
+                        <div>
+                            <Button variant="contained" color="primary"
+                                className={classes.submit}
+                                fullWidth
+                                variant="contained"
+                                type="submit"
+                                name="submit"
+                                value="Log In"
+                            >
+                                Log In
+              </Button>
+                        </div>
+                    </form>
+                
+            </div>
+            </Container>
             </div>
         );
     }
@@ -103,4 +144,4 @@ const mapStateToProps = state => ({
     user: state.user
 });
 
-export default connect(mapStateToProps)(AdminLogIn);
+export default connect(mapStateToProps)(withStyles(styles)(AdminLogIn));

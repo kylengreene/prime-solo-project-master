@@ -11,6 +11,7 @@ import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
 import { withStyles } from "@material-ui/core/styles";
 import Container from '@material-ui/core/Container';
+import Banner from '/Users/kylegreene/Prime/Tier 3/Solo Project/prime-solo-project-master/src/pictures/Icaghowan4C_GTC.jpg'
 
 const styles = theme => ({
   paper: {
@@ -65,6 +66,8 @@ class RegisterPage extends Component {
   render() {
     const { classes } = this.props;
     return (
+      <div>
+        <img src={Banner} style={{ marginLeft: '17%' }} />
       <Container component="main" maxWidth="xs">
         <div className={classes.paper}>
         {this.props.errors.registrationMessage && (
@@ -122,6 +125,7 @@ class RegisterPage extends Component {
           </div>
           <center>
           <Button
+                fullWidth
             variant="contained" color="primary"
             type="button"
             className="link-button"
@@ -131,18 +135,9 @@ class RegisterPage extends Component {
           </Button>
             </center>
         </form>
-        <center>
-            <Button
-            variant="contained" color="primary"
-            type="button"
-            className="link-button"
-            onClick={() => {this.props.dispatch({type: 'SET_TO_LOGIN_MODE'})}}
-          >
-            Login
-          </Button>
-        </center>
       </div>
       </Container>
+      </div>
     );
   }
 }

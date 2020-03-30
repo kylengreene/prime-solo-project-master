@@ -1,3 +1,21 @@
-.UserPage{
-   
+.div{
+   display: flex
+}
+
+.search{
+    display: inline-flexbox;
+    vertical-align: middle;
+    align-items: center;
+    width: 400px;
+    margin-right: 20%;
+    margin-left: 10%;
+ text-align: center;
+}
+
+.feed{
+  display: inline-flexbox;
+    align-items: center;
+    width: 400px;
+    margin-right: 10%;
+    margin-left: 20%;
 }

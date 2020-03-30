@@ -1,0 +1,24 @@
+.resultsList{
+  list-style-type: none;
+display: block;
+    align-content: center;
+    text-align: center;
+}
+
+.result{
+    margin: 15px;
+     align-content: center;
+     text-align: center;
+}
+
+.searchResults{
+   align-content: center;
+   text-align: center;
+}
+
+.searchArea{
+     list-style-type: none;
+
+    align-content: center;
+    text-align: center;
+}

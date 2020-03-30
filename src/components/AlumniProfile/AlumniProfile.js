@@ -1,13 +1,48 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import Card from '@material-ui/core/Card';
+import CardActions from "@material-ui/core/CardActions";
+import CardContent from "@material-ui/core/CardContent";
+import { withStyles } from "@material-ui/core/styles";
+
+const styles = theme => ({
+    div: {
+        display: 'flex',
+        width: '100%'
+    },
+    paper: {
+        marginTop: theme.spacing(8),
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+    },
+    avatar: {
+        margin: theme.spacing(1),
+        backgroundColor: theme.palette.secondary.main,
+    },
+    card: {
+        diplay: "inline-block",
+        display: "flex",
+        width: "50%"
+    },
+    form: {
+        width: "800px", // Fix IE 11 issue.
+        marginTop: theme.spacing(3),
+    },
+    submit: {
+        margin: theme.spacing(3, 0, 2),
+    },
+    formControl: {
+        margin: theme.spacing(1),
+        minWidth: 375,
+        marginTop: theme.spacing(-1)
+    },
+});
 
 class AlumniProfile extends Component {
     state = {};
-
-   
-
-    handleEditClick(event) {
+     handleEditClick(event) {
         event.preventDefault();
         console.log(this.props);
         // this.props.history.push('/editProfilePage');
@@ -24,30 +59,47 @@ class AlumniProfile extends Component {
     }
 
     render() {
+        const { classes } = this.props;
         return (
-            <>
+            <div className={classes.div}>
+                <Card className={classes.card}>
+                    <CardContent>
+                        {this.props.search &&
+                            <div>
+                                <h3>First Name: </h3>{this.props.search.firstName}
+                                <h3>Last Name:</h3>{this.props.search.lastName}
+                                <h3>Email: </h3>{this.props.search.email}
+                                <h3>Phone Number: </h3>{this.props.search.phoneNumber}
+                                <h3>Age: </h3>{this.props.search.age}
+                                <h3>Gender: </h3>{this.props.search.gender}
+                                <h3>Years At Camp:</h3> {this.props.search.yearsAtCamp}
+                                <h3>Favorite Camp Activity: </h3>{this.props.search.favoriteActivity}
+                                <h3>Favorite Camp Memory: </h3>{this.props.search.favoriteMemory}
+                                <h3>Do you currently Give to the Annual fund?: </h3>{this.props.search.annualFund}
+                                <h3>Interested in doing volunteer work?: </h3>{this.props.search.volunteerWork}
+                                <h3>Would you like to be on our News list?:</h3> {this.props.search.newsList}
+                                <h3>Are you willing to be contacted by camp?: </h3>{this.props.search.willingToBeContacted}
+                                <br></br>
 
-                {this.props.search.url &&
-                    <div>
-                        <h2>First Name: {this.props.search.firstName}</h2>
-                        <h2>Last Name: {this.props.search.lastName}</h2>
-                        <h2>Email: {this.props.search.email}</h2>
-                        <h2>Phone Number: {this.props.search.phoneNumber}</h2>
-                        <h2>Age: {this.props.search.age}</h2>
-                        <h2>Gender: {this.props.search.gender}</h2>
-                        <h2>Years At Camp: {this.props.search.yearsAtCamp}</h2>
-                        <h2>Favorite Camp Activity: {this.props.search.favoriteActivity}</h2>
-                        <h2>Favorite Camp Memory: {this.props.search.favoriteMemory}</h2>
-                        <h2>Do you currently Give to the Annual fund?: {this.props.search.annualFund}</h2>
-                        <h2>Interested in doing volunteer work?: {this.props.search.volunteerWork}</h2>
-                        <h2>Would you like to be on our News list?: {this.props.search.newsList}</h2>
-                        <h2>Are you willing to be contacted by camp?: {this.props.search.willingToBeContacted}</h2>
-                    </div>
-    }
-                <div> <img src={this.props.search.url} /></div>
+                            <br></br>
+                            <button onClick={this.takeMeBack}>Back To Search Results</button>
+                            </div>
+                        }
+                    </CardContent>
+                </Card>
+                <Card className={classes.card}>
+                    <CardContent >
+                        <div className={classes.profPic}>
+                            <img height="600px" src={this.props.search.url} />
+
+                        </div>
+                    </CardContent>
+                </Card>
                 
-                <button onClick={this.takeMeBack}>Back To Search Results</button>
-            </>
+
+
+                
+            </div>
         )
 
     }
@@ -63,5 +115,5 @@ const mapStateToProps = state => ({
     search: state.searchReducer.searchResults[0]
 });
 
-export default connect(mapStateToProps)(AlumniProfile);
+export default connect(mapStateToProps)(withStyles(styles)(AlumniProfile));
 
