@@ -43,6 +43,9 @@ const styles = theme => ({
         margin: theme.spacing(1),
         minWidth: 375,
         marginTop: theme.spacing(-1)
+    },
+    palette:{
+        primary: '#0060af'
     }
 });
 

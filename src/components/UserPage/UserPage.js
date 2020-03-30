@@ -26,6 +26,9 @@ import Select from '@material-ui/core/Select';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
+import Card from '@material-ui/core/Card';
+import CardActions from "@material-ui/core/CardActions";
+import CardContent from "@material-ui/core/CardContent";
 // This is the page where the user will land upon log in. 
 //It includes a Facebook feed of camp updates as well as a search box to search for alumni. 
 
@@ -39,8 +42,9 @@ const styles = theme => ({
   paper: {
     marginTop: theme.spacing(8),
     display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
+    flexDirection: 'row',
+    // alignItems: 'center',
+    width: '100%'
   },
   avatar: {
     margin: theme.spacing(1),
@@ -54,7 +58,9 @@ const styles = theme => ({
     margin: theme.spacing(3, 0, 2),
   },
   card: {
-    display: 'flex',
+   
+    display: "flex",
+    width: "50%"
   },
   cardDetails: {
     flex: 1,
@@ -62,6 +68,14 @@ const styles = theme => ({
   cardMedia: {
     width: 160,
   },
+  div: {
+    display: 'flex',
+    width: '100%'
+  },
+  formControl: {
+    width: '100%',
+    align: 'center'
+  }
 });
 
 class UserPage extends Component {
@@ -96,7 +110,7 @@ class UserPage extends Component {
     const { classes } = this.props;
     return (
       <>
-        <div className="UserPage">
+        <div className={classes.carousel}>
           <div className="carousel">
           <Carousel
               centered
@@ -118,26 +132,26 @@ class UserPage extends Component {
           </Carousel>
         </div>
           
-          <h1 id="welcome">
-            Welcome, {this.props.user.username}!
-    </h1>
-          <Container className={classes.container} component="main" maxWidth="s">
-            <CssBaseline />
-          <Grid item xs={12} >
-            <div className={classes.paper}>
+         
+          <div className='div'>
+     
+          
+            <div className='feed'>
           <div className="fb-page" data-href="https://www.facebook.com/campicaghowan" data-tabs="timeline" data-width=""
             data-height="" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false"
             data-show-facepile="true">
           </div>
           {/* <blockquote cite="https://www.facebook.com/campicaghowan" className="fb-xfbml-parse-ignore"><a
-            href="https://www.facebook.com/campicaghowan">YMCA Camp Icaghowan</a></blockquote> */}
+            href="https://www.facebook.com/campicaghowan">YMCA Camp Icaghowan</a></blockquote>  */}
             </div>
-            </Grid>
-          {/* <LogOutButton className="log-in" /> */}
-       
-        
-            <div className={classes.paper}>
-                <Grid item xs={12} m={6} >
+            
+     
+          
+            <div className="search">
+             <h1 id="welcome">
+            Welcome, {this.props.user.username}!
+    </h1> 
+            <h1>Alumni Search</h1>
                 <FormControl className={classes.formControl}>
                <InputLabel >Please select a Search Category</InputLabel>
                 <Select
@@ -146,6 +160,7 @@ class UserPage extends Component {
                   name="category"
                     value={this.state.category}
                   onChange={this.handleChange('category')}
+                  width="300px"
                 >
                     <MenuItem value="firstName">First Name</MenuItem>
                     <MenuItem value="lastName">Last Name</MenuItem>
@@ -155,7 +170,7 @@ class UserPage extends Component {
                 </Select>
                 <FormHelperText>Please Select</FormHelperText>
                                 </FormControl>
-                                </Grid>
+                               
                 <TextField
                   name="search"
                   variant="outlined"
@@ -180,8 +195,10 @@ class UserPage extends Component {
               </Button>
         
         </form>
+            </div>
         </div>
-          </Container>
+        
+       
           
         </div> 
       </>

@@ -74,7 +74,7 @@ class EditProfilePage extends Component {
             title: 'Are you sure you want to save these edits?',
             icon: 'warning',
             showCancelButton: true,
-            confirmButtonColor: '#3085d6',
+            confirmButtonColor: '#0089d0',
             cancelButtonColor: '#d33',
             confirmButtonText: 'Yes, submit these edits it!'
         }).then((result) => {

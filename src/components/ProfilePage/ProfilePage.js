@@ -7,6 +7,10 @@ import CardContent from "@material-ui/core/CardContent";
 import { withStyles } from "@material-ui/core/styles";
 
 const styles = theme => ({
+    div:{
+display: 'flex',
+width:'100%'
+    },
     paper: {
         marginTop: theme.spacing(8),
         display: 'flex',
@@ -19,10 +23,11 @@ const styles = theme => ({
     },
     card:{
         diplay: "inline-block",
-        maxWdith: 300
+        display:"flex",
+        width: "50%"
     },
     form: {
-        width: '100%', // Fix IE 11 issue.
+        width: "800px", // Fix IE 11 issue.
         marginTop: theme.spacing(3),
     },
     submit: {
@@ -55,7 +60,7 @@ class ProfilePage extends Component {
     render() {
         const { classes } = this.props;
         return (
-            <div style={{ display: "inline-block" }}>
+            <div className={classes.div}>
                 <Card className={classes.card}>
                     <CardContent>
                 {this.props.userInfo &&
@@ -80,13 +85,13 @@ class ProfilePage extends Component {
                 </Card>
                 <Card className={classes.card}>
                     <CardContent >
-                <div className={classes.card} ><img height = "400px" src={this.props.userInfo.url} /></div>
-                    </CardContent>               
-                </Card>
-                <>
-                <Link to='/editProfilePage'>Edit Profile</Link>
-                   
-                </>
+             <img height = "400px" src={this.props.userInfo.url} />
+                        <Link to='/editProfilePage'>Edit Profile</Link>
+                    </CardContent>             
+              </Card>
+              
+               
+            
                 
             </div>
         )
