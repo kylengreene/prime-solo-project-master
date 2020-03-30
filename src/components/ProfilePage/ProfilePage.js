@@ -78,15 +78,21 @@ class ProfilePage extends Component {
                         <h3>Interested in doing volunteer work?: </h3>{this.props.userInfo.volunteerWork}
                         <h3>Would you like to be on our News list?:</h3> {this.props.userInfo.newsList}
                         <h3>Are you willing to be contacted by camp?: </h3>{this.props.userInfo.willingToBeContacted}
-                    </div>
-
+                    <br>
+                    
+                    </br>
+                    <br></br>
+                        <Link to='/editProfilePage'>Edit Profile</Link>
+                        </div>
                 }
                 </CardContent>
                 </Card>
                 <Card className={classes.card}>
                     <CardContent >
-             <img height = "400px" src={this.props.userInfo.url} />
-                        <Link to='/editProfilePage'>Edit Profile</Link>
+                        <div className={classes.profPic}>
+             <img height = "600px" src={this.props.userInfo.url} />
+                        
+                        </div>
                     </CardContent>             
               </Card>
               

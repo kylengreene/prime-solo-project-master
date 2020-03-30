@@ -18,7 +18,7 @@ import Select from '@material-ui/core/Select';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
-
+import '../AdminSearch/AdminSearch';
 
 // This page is accessed upon selecting search from user page. It displays search results.
 const styles = theme => ({

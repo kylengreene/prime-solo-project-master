@@ -11,8 +11,11 @@ import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
 import { withStyles } from "@material-ui/core/styles";
 import Container from '@material-ui/core/Container';
+import Banner from '/Users/kylegreene/Prime/Tier 3/Solo Project/prime-solo-project-master/src/pictures/Icaghowan4C_GTC.jpg'
+
 
 const styles = theme => ({
+  
   paper: {
     marginTop: theme.spacing(8),
     display: 'flex',
@@ -29,6 +32,9 @@ const styles = theme => ({
   },
   submit: {
     margin: theme.spacing(3, 0, 2),
+    palette: {
+      primary: '#0060af'
+    }
   },
   
 });
@@ -71,8 +77,14 @@ class LoginPage extends Component {
   
   render() {
      const { classes } = this.props;
+    
     return (
+    <div>
+      <img src={Banner} style={{ marginLeft:'17%'}} />
+    
+   
       <Container component="main" maxWidth="xs">
+        
       <div className={classes.paper}>
         {this.props.errors.loginMessage && (
           <h2
@@ -93,7 +105,7 @@ class LoginPage extends Component {
               id="username"
               label="Username:"
               name="username"
-              autoComplete="email"
+              autoComplete="username"
               autoFocus
               value={this.state.username}
               onChange={this.handleInputChangeFor('username')}
@@ -116,7 +128,7 @@ class LoginPage extends Component {
            
           </div>
           <div>
-            <Button variant="contained" color="primary"
+              <Button variant="contained" color="primary"
                 className={classes.submit}
                 fullWidth
                 variant="contained"
@@ -139,6 +151,7 @@ class LoginPage extends Component {
         </center>
       </div>
       </Container>
+      </div>
     );
   }
 }

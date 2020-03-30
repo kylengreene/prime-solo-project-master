@@ -15,6 +15,7 @@ import Select from '@material-ui/core/Select';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
+import '../SearchResults/SearchResults.css'
 
 
 // This page is accessed upon selecting search from user page. It displays search results.
@@ -90,6 +91,7 @@ class SearchResultsPage extends Component {
         const { classes } = this.props;
         return (
             <>
+            <div className='searchArea'>
                 <h1>Alumni Search</h1>
                 <div className={classes.paper}>
                 <Grid item xs={12} m={6} >
@@ -136,15 +138,22 @@ class SearchResultsPage extends Component {
                 </form>
                 </Grid>
        </div>
-    
+                </div>
+
+            <div className='searchResults'>
                 <h1>Search Results</h1>
-                <ul>
+                <ul className='resultsList'>
                     {this.props.results.searchResults.map((result) => {
                         return (
-                            <li key={result.id} > <img height="150" src={result.url} /> {result.firstName} {result.lastName}  <button onClick={() => this.viewProfile(result.id)}> View {result.firstName}'s Profile</button></li>
+                            <div className='result'>
+                            <li key={result.id} > <img height="150" src={result.url} />   </li>
+                            <p>{ result.firstName} { result.lastName} </p>
+                        <button onClick={() => this.viewProfile(result.id)}> View {result.firstName}'s Profile</button>
+                       </div>
                         )
                     })}
                 </ul>
+                </div>
             </>
 
         )
